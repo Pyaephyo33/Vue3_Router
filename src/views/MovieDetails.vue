@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
     id: {
@@ -11,10 +11,13 @@ const props = defineProps({
 
 const queryMovie = ref({})
 const isLoading = ref(true)
-const route = useRoute();
+const router = useRouter()
 
 onMounted(async() => {
     const result = await fetch(`http://localhost:8000/movies/${parseInt(props.id)}`);
+    if(result.status === 404){
+        router.push({name: 'NotFound'})
+    }
     const response = await result.json();
     queryMovie.value = response;
     isLoading.value = false;
@@ -46,7 +49,7 @@ onMounted(async() => {
 
           <div class="mt-6 sm:-mx-2">
             <div class="inline-flex w-full overflow-hidden rounded-lg shadow sm:w-auto sm:mx-2">
-              <button 
+              <button @click="$router.back()"
                 class="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto"
               >
                 <span class="mx-2">Go Back</span>
