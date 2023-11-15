@@ -9,19 +9,24 @@ const Home = () => import('../views/Home.vue');
 const routes = [
     {
         path: '/',
+        name: "Home",
         component: Home
     },
     {
         path: '/about',
+        name: "About",
         component: () => import('../views/About.vue')
     },
     {
         path: '/movies',
+        name: "MovieList",
         component: () => import('../views/Movies.vue')
     },
     {
         path: '/movies/:id',
-        component: () => import('../views/MovieDetails.vue')
+        name: "MovieDetails",
+        component: () => import('../views/MovieDetails.vue'),
+        props: true
     },
 ];
 
