@@ -27,3 +27,16 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### json server install
+
+```sh
+npm install -g json-server
+```
+https://www.npmjs.com/package/json-server
+
+### flowbit install
+```sh
+npm install flowbit
+```
+https://flowbite.com/docs/getting-started/introduction/
